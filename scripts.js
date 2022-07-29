@@ -114,18 +114,79 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
+//create object for result display area
+const displayArea = document.querySelector('.text-box');
+const p1 = document.createElement('p');
+const p2 = document.createElement('p');
+const p3 = document.createElement('p');
 
-
+//allow buttons to manage gameplay
 const buttons = document.querySelectorAll('button');
-
-buttons.forEach(button => console.log(button));
+let result = 0;
+let playerScore = 0;
+let computerScore = 0;
+let roundCount = 0;
 
 buttons.forEach(button => button.addEventListener('click', () => {
+    result = playRound(button.getAttribute('id'), getComputerChoice());
 
-    //console.log(button.getAttribute('id')),
-    console.log(playRound(button.getAttribute('id'), getComputerChoice()))
+    displayArea.textContent = '';
+    if (result === -1) {
 
+        return 'Error. Halting execution';
+    }
+
+    else if (result === 1) {
+        p1.textContent = 'You win this round!';
+        playerScore++;
+        
+    }
+    else if (result === 2) {
+        p1.textContent = "You lose this round! \n";
+        computerScore++;
+        
+    }
+    else {
+        p1.textContent = "It was a draw! \n";
+        computerScore++;
+        
+    }
+
+    roundCount++;
+
+    p2.textContent = `Your Score: ${playerScore}\n`;
+    p3.textContent = `Computer Score: ${computerScore}`;
+
+    if(roundCount >= 5) {
+
+        let finalResult = ' ';
+
+        if(playerScore > computerScore) {
+
+            finalResult = 'The Player wins the game!';
+        }
+
+        else if (playerScore < computerScore) {
+
+            finalResult = 'The Computer wins the game!';
+        }
+
+        else {
+
+            finalResult = "It was a tie!";
+        }
+
+        p1.textContent = finalResult;
+        p2.textContent = `Your Score: ${playerScore}\n`;
+        p3.textContent = `Computer Score: ${computerScore}`;
+    }
+
+    displayArea.appendChild(p1);
+    displayArea.appendChild(p2);
+    displayArea.appendChild(p3);
 }));
+
+
 
 //function to run a 5 round game of rock paper scissors
 //handles user input and calls all other functions
@@ -134,11 +195,10 @@ buttons.forEach(button => button.addEventListener('click', () => {
 //     //keep track of scores
 //     let playerScore = 0;
 //     let computerScore = 0;
+//     let i = 0;
 
-//     for(let i=0; i < 5; i++) {
+//     while(i < 5) {
 
-//         let playerChoice = prompt("Choose Rock, Paper, or Scissors: ");
-//         let result = playRound(playerChoice, getComputerChoice());
 
 //         if (result === -1) {
 
