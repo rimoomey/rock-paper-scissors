@@ -114,58 +114,71 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
+
+
+const buttons = document.querySelectorAll('button');
+
+buttons.forEach(button => console.log(button));
+
+buttons.forEach(button => button.addEventListener('click', () => {
+
+    //console.log(button.getAttribute('id')),
+    console.log(playRound(button.getAttribute('id'), getComputerChoice()))
+
+}));
+
 //function to run a 5 round game of rock paper scissors
 //handles user input and calls all other functions
-function game(){
+// function game(){
 
-    //keep track of scores
-    let playerScore = 0;
-    let computerScore = 0;
+//     //keep track of scores
+//     let playerScore = 0;
+//     let computerScore = 0;
 
-    for(let i=0; i < 5; i++) {
+//     for(let i=0; i < 5; i++) {
 
-        let playerChoice = prompt("Choose Rock, Paper, or Scissors: ");
-        let result = playRound(playerChoice, getComputerChoice());
+//         let playerChoice = prompt("Choose Rock, Paper, or Scissors: ");
+//         let result = playRound(playerChoice, getComputerChoice());
 
-        if (result === -1) {
+//         if (result === -1) {
 
-            return 'Error. Halting execution';
-        }
+//             return 'Error. Halting execution';
+//         }
 
-        else if (result === 1) {
-            console.log('You win this round!');
-            playerScore++;
-        }
-        else if (result === 2) {
-            console.log('You lose this round!')
-            computerScore++;
-        }
-    }
+//         else if (result === 1) {
+//             console.log('You win this round!');
+//             playerScore++;
+//         }
+//         else if (result === 2) {
+//             console.log('You lose this round!')
+//             computerScore++;
+//         }
+//     }
 
-    console.log('Final scores were: ')
-    console.log(`Player: ${playerScore}`);
-    console.log(`Computer: ${computerScore}`);
+//     console.log('Final scores were: ')
+//     console.log(`Player: ${playerScore}`);
+//     console.log(`Computer: ${computerScore}`);
 
-    let finalResult = ' ';
+//     let finalResult = ' ';
 
-    if(playerScore > computerScore) {
+//     if(playerScore > computerScore) {
 
-        finalResult = 'The Player wins!';
-    }
+//         finalResult = 'The Player wins!';
+//     }
 
-    else if (playerScore < computerScore) {
+//     else if (playerScore < computerScore) {
 
-        finalResult = 'The Computer wins!';
-    }
+//         finalResult = 'The Computer wins!';
+//     }
 
-    else {
+//     else {
 
-        finalResult = "It was a tie!";
-    }
+//         finalResult = "It was a tie!";
+//     }
 
-    console.log(`Final Result: ${finalResult}`);
+//     console.log(`Final Result: ${finalResult}`);
     
 
-}
+// }
 
-game();
+// game();
